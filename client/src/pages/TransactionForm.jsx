@@ -65,7 +65,7 @@ function TransactionForm({ operationToPerform, view = false }) {
             }
             document.getElementById("transactionForm").reset();
 
-            (operationToPerform === "Return" ? API.modifyTransaction(formData.id, requestBody) : API.addTransaction(requestBody))
+            (operationToPerform === "Return" ? API.modifyTransaction(formData.id, requestBody) : "")
                 .then(result => {
                     result['message'] ? notify(result['message']) : notify(result['error'], "error")
                 });
