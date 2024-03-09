@@ -133,11 +133,13 @@ def get_avg_days_book_held():
         db.session.query(
             Book.title,
             func.avg(func.DATEDIFF(Transaction.returned_date, Transaction.borrowed_date)).label('average_days_held')
-        ).join(Book).filter(Transaction.returned_date != sqlalchemy.types.NullType,
-                            Transaction.book_id != sqlalchemy.types.NullType)
+        ).join(Book).filter(Transaction.book_id.isnot(None), Transaction.returned_date.isnot(None))
         .group_by(Transaction.book_id)
+        .having(func.avg(func.DATEDIFF(Transaction.returned_date, Transaction.borrowed_date)) > 0)
         .all()
     )
+
+    print(average_days_held)
 
     results = [{"book_id": result.title, "average_days_held": result.average_days_held} for result in
                average_days_held]
