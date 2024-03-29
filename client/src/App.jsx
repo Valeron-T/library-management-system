@@ -1,5 +1,5 @@
 import './App.css'
-import Sidebar, { SidebarItem } from './components/Navbar'
+import Sidebar, { SidebarItem, ThemeSidebarItem } from './components/Navbar'
 import { FaUsers, FaBook, FaHome } from "react-icons/fa";
 import { GrTransaction } from "react-icons/gr";
 import { MdAnalytics } from "react-icons/md";
@@ -15,8 +15,15 @@ import Transactions from './pages/Transactions';
 import TransactionForm from './pages/TransactionForm';
 import IssueBookForm from './pages/IssueBookForm';
 import Reports from './pages/Reports';
+import { useLayoutEffect } from 'react';
 
 function App() {
+
+  useLayoutEffect(() => {
+    if (localStorage.getItem("isDark") === 'true') {
+      document.documentElement.classList.add('dark');
+    }
+  })
 
   return (
     <>
@@ -24,25 +31,39 @@ function App() {
 
         {/* Navbar */}
         <Sidebar>
-          <NavLink to={"/"}>
-            {({ isActive }) => (<SidebarItem icon={<FaHome />} text={"Home"} active={isActive} />)}
-          </NavLink>
+          <div className="flex flex-col h-full justify-between">
 
-          <NavLink to={"/books"}>
-            {({ isActive }) => (<SidebarItem icon={<FaBook />} text={"Books"} active={isActive} />)}
-          </NavLink>
+            <div className="flex flex-col">
+              <NavLink to={"/"}>
+                {({ isActive }) => (<SidebarItem icon={<FaHome />} text={"Home"} active={isActive} />)}
+              </NavLink>
 
-          <NavLink to={"/members"}>
-            {({ isActive }) => (<SidebarItem icon={<FaUsers />} text={"Members"} active={isActive} />)}
-          </NavLink>
+              <NavLink to={"/books"}>
+                {({ isActive }) => (<SidebarItem icon={<FaBook />} text={"Books"} active={isActive} />)}
+              </NavLink>
 
-          <NavLink to={"/transactions"}>
-            {({ isActive }) => (<SidebarItem icon={<GrTransaction />} text={"Transactions"} active={isActive} />)}
-          </NavLink>
+              <NavLink to={"/members"}>
+                {({ isActive }) => (<SidebarItem icon={<FaUsers />} text={"Members"} active={isActive} />)}
+              </NavLink>
 
-          <NavLink to={"/reports"}>
-            {({ isActive }) => (<SidebarItem icon={<MdAnalytics />} text={"Reports"} active={isActive} />)}
-          </NavLink>
+              <NavLink to={"/transactions"}>
+                {({ isActive }) => (<SidebarItem icon={<GrTransaction />} text={"Transactions"} active={isActive} />)}
+              </NavLink>
+
+              <NavLink to={"/reports"}>
+                {({ isActive }) => (<SidebarItem icon={<MdAnalytics />} text={"Reports"} active={isActive} />)}
+              </NavLink>
+            </div>
+
+            <div className="flex flex-col mb-2">
+              <ThemeSidebarItem />
+            </div>
+
+
+          </div>
+
+
+
 
         </Sidebar>
 

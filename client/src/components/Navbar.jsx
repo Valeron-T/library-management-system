@@ -1,5 +1,6 @@
 import { ChevronLast, ChevronFirst, ChevronDown, ChevronUp } from "lucide-react";
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 /**
  * Context for managing the state of the sidebar expansion.
@@ -18,7 +19,7 @@ export default function Sidebar({ children }) {
 
     return (
         <aside className="sm:h-screen max-sm:w-[100vw] sticky top-0 z-50">
-            <nav className="h-full flex flex-col dark:bg-white shadow-sm">
+            <nav className="h-full flex flex-col dark:bg-dark-gray bg-white shadow-sm">
                 <div className="p-4 pb-2 flex justify-between items-center">
                     <img
                         src="/lib.png"
@@ -73,8 +74,8 @@ export function SidebarItem({ icon, text, active = false, alert = false }) {
                 font-medium rounded-md cursor-pointer
                 transition-colors group
                 ${active
-                    ? "bg-gradient-to-tr from-[#CCCDE0] to-[#E6E6EF] text-[#2F304C]"
-                    : "dark:hover:text-gray-700 hover:bg-sky-100 dark:text-gray-500 text-gray-600"
+                    ? "bg-gradient-to-tr from-[#CCCDE0] to-[#E6E6EF] text-[#131111]"
+                    : "hover:text-gray-700 hover:bg-sky-100 text-gray-500"
                 }
             `}
         >
@@ -102,6 +103,80 @@ export function SidebarItem({ icon, text, active = false, alert = false }) {
                 `}
                 >
                     {text}
+                </div>
+            )}
+        </li>
+    );
+}
+
+export function toggleDarkMode() {
+    const html = document.documentElement;
+
+    if (localStorage.getItem("isDark") === null) {
+        localStorage.setItem('isDark', 'true');
+        html.classList.add('dark');
+        console.log("Initial theme set")
+    } else if (localStorage.getItem("isDark") === 'true') {
+        html.classList.remove('dark');
+        localStorage.setItem('isDark', 'false');
+        console.log("light")
+    } else {
+        html.classList.add('dark');
+        localStorage.setItem('isDark', 'true');
+        console.log("dark")
+    }
+}
+
+
+export function ThemeSidebarItem({ active = false, alert = false }) {
+    const { expanded } = useContext(SidebarContext);
+
+    const [checkboxVal, setcheckboxVal] = useState(localStorage.getItem("isDark") === 'true');
+
+    return (
+        <li
+            onClick={() => {
+                toggleDarkMode()
+                setcheckboxVal(!checkboxVal)
+            }}
+            className={`
+                relative flex items-center py-2 px-3 my-1
+                font-medium rounded-md cursor-pointer
+                transition-colors group
+                ${active
+                    ? "bg-gradient-to-tr from-[#CCCDE0] to-[#E6E6EF] text-[#131111]"
+                    : "hover:text-gray-700 hover:bg-sky-100 text-gray-500"
+                }
+            `}
+        >
+            <ThemeToggle isChecked={checkboxVal} />
+            <span
+                className={`overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"
+                    }`}
+            >
+                Theme
+            </span>
+            {alert && (
+                <div
+                    className={`absolute right-2 w-2 h-2 rounded bg-sky-400 ${expanded ? "" : "top-2"
+                        }`}
+                />
+            )}
+
+            {!expanded && (
+                <div
+                    onClick={() => {
+                        toggleDarkMode()
+                        setcheckboxVal(!checkboxVal)
+                    }}
+                    className={`
+                    absolute left-full rounded-md px-2 py- ml-6
+                    bg-sky-100 text-[#2F304C] text-sm
+                    invisible opacity-20 -translate-x-3 transition-all
+                    group-hover:visible group-hover:opacity-100 group-hover:translate-x-0
+                `}
+                >
+                    Switch Theme
                 </div>
             )}
         </li>
