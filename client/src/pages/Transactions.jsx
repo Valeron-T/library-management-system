@@ -8,6 +8,7 @@ import { CustomTableToolbar } from '../components/CustomTableToolbar';
 import { Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { parseAsInt } from '../services/helpers';
+import DataGridWrapper from '../components/DataGridWrapper';
 
 /** Page to display all transactions in a data grid and perform various operations */
 function Transactions() {
@@ -30,11 +31,11 @@ function Transactions() {
         },
         {
             field: 'member_id', headerName: 'Member ID', minWidth: 50, valueGetter: params => parseAsInt(params), renderCell: ({ row }) =>
-                row.member_id ? <Link to={`/members/${row.member_id}/details`}><CenteredText text={row.member_id} /></Link>:<p>NA</p>,
+                row.member_id ? <Link to={`/members/${row.member_id}/details`}><CenteredText text={row.member_id} /></Link> : <p>NA</p>,
         },
         {
             field: 'book_id', headerName: 'Book ID', minWidth: 50, valueGetter: params => parseAsInt(params), renderCell: ({ row }) =>
-                row.book_id ? <Link to={`/books/${row.book_id}/details`}><CenteredText text={row.book_id} /></Link>:<p>NA</p>
+                row.book_id ? <Link to={`/books/${row.book_id}/details`}><CenteredText text={row.book_id} /></Link> : <p>NA</p>
         },
         { field: 'per_day_fee', headerName: 'Per Day Fee', minWidth: 50 },
         { field: 'amount_paid', headerName: 'Amount Paid', minWidth: 50 },
@@ -59,31 +60,16 @@ function Transactions() {
             <Toaster />
             <TitleText text={"Transactions"} />
             {/* Wait for transactions to be fetched before rendering */}
-            {transactions && <div className='rounded-2xl bg-white mt-0 m-4'>
-                <DataGrid
-                    disableRowSelectionOnClick
-                    disableColumnFilter
-                    disableColumnSelector
-                    disableDensitySelector
-                    initialState={{
-                        pagination: { paginationModel: { pageSize: 10 } },
-                    }}
-                    pageSizeOptions={[5, 10, 25, 100]}
-                    className='!border-0 max-w-[100%]'
-                    rows={transactions['transactions']} columns={columns} sx={{
-                        "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                            outline: "none !important",
-                        }
-                    }}
-                    slots={{ toolbar: CustomTableToolbar }}
-                    slotProps={{
-                        toolbar: {
-                            buttons: [
-                                { title: "Issue Book", link: "/transactions/new" }
-                            ]
-                        }
-                    }} />
-            </div>}
+            {transactions && <DataGridWrapper
+                rows={transactions['transactions']} columns={columns}
+                slots={{ toolbar: CustomTableToolbar }}
+                slotProps={{
+                    toolbar: {
+                        buttons: [
+                            { title: "Issue Book", link: "/transactions/new" }
+                        ]
+                    }
+                }} />}
 
         </div>
     )

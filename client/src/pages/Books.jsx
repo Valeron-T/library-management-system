@@ -6,7 +6,7 @@ import * as API from '../services/API';
 import TitleText from '../components/TitleText';
 import { CustomTableToolbar } from '../components/CustomTableToolbar';
 import { Toaster } from 'react-hot-toast';
-import { parseAsInt } from '../services/helpers';
+import DataGridWrapper from '../components/DataGridWrapper';
 
 /** Page to display all books in a data grid and perform various operations */
 function Books() {
@@ -50,35 +50,17 @@ function Books() {
 
     return (
         <div className='flex flex-col font-poppins w-full'>
-            <Toaster/>
+            <Toaster />
             <TitleText text={"Books"} />
             {/* Wait for books to be fetched before rendering */}
-            {books && <div className='rounded-2xl bg-white mt-0 m-4'>
-                <DataGrid
-                    disableRowSelectionOnClick
-                    disableColumnFilter
-                    disableColumnSelector
-                    disableDensitySelector
-                    initialState={{
-                        pagination: { paginationModel: { pageSize: 10 } },
-                    }}
-                    pageSizeOptions={[5, 10, 25, 100]}
-                    className='!border-0 max-w-[100%]'
-                    rows={books['books']} columns={columns} sx={{
-                        "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
-                            outline: "none !important",
-                        }
-                    }}
-                    slots={{ toolbar: CustomTableToolbar }}
-                    slotProps={{
-                        toolbar: {
-                            buttons: [
-                                { title: "Add Book Manually", link: "/books/new" },
-                                { title: "Import Using API", link: "/books/search" }
-                            ]
-                        }
-                    }} />
-            </div>}
+            {books && <DataGridWrapper rows={books['books']} columns={columns} slots={{ toolbar: CustomTableToolbar }} slotProps={{
+                toolbar: {
+                    buttons: [
+                        { title: "Add Book Manually", link: "/books/new" },
+                        { title: "Import Using API", link: "/books/search" }
+                    ]
+                }
+            }} />}
 
         </div>
     )

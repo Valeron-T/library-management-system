@@ -18,7 +18,7 @@ export default function Sidebar({ children }) {
 
     return (
         <aside className="sm:h-screen max-sm:w-[100vw] sticky top-0 z-50">
-            <nav className="h-full flex flex-col dark:bg-licorice dark:text-white bg-white shadow-sm">
+            <nav className="h-full flex flex-col dark:bg-white shadow-sm">
                 <div className="p-4 pb-2 flex justify-between items-center">
                     <img
                         src="/lib.png"
@@ -30,7 +30,7 @@ export default function Sidebar({ children }) {
                     {/* Button visible only on large screens */}
                     <button
                         onClick={() => setExpanded((curr) => !curr)}
-                        className="p-1.5 rounded-lg text-slate-200 bg-[#09814A] hover:bg-blue-900 max-sm:hidden"
+                        className="p-1.5 rounded-lg text-slate-200 bg-pink-magenta hover:bg-sea-green max-sm:hidden"
                     >
                         {expanded ? <ChevronFirst /> : <ChevronLast />}
                     </button>
@@ -38,7 +38,7 @@ export default function Sidebar({ children }) {
                     {/* Button visible only on small screens */}
                     <button
                         onClick={() => setExpanded((curr) => !curr)}
-                        className="p-1.5 rounded-lg text-slate-200 bg-[#09814A] hover:bg-blue-900 sm:hidden"
+                        className="p-1.5 rounded-lg text-slate-200 bg-pink-magenta hover:bg-sea-green sm:hidden"
                     >
                         {expanded ? <ChevronUp /> : <ChevronDown />}
                     </button>
@@ -74,7 +74,7 @@ export function SidebarItem({ icon, text, active = false, alert = false }) {
                 transition-colors group
                 ${active
                     ? "bg-gradient-to-tr from-[#CCCDE0] to-[#E6E6EF] text-[#2F304C]"
-                    : "dark:hover:text-gray-700 hover:bg-sky-100 dark:text-gray-200 text-gray-600"
+                    : "dark:hover:text-gray-700 hover:bg-sky-100 dark:text-gray-500 text-gray-600"
                 }
             `}
         >
