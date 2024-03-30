@@ -12,6 +12,7 @@ export const theme = {
       'dark-gray': "#353334",
       'light-gray': "#4D4949",
       'pink-magenta': "#cf4464",
+      'pink-magenta-light': "#ffb9ce",
       'licorice': "#2e0624"
     },
   },

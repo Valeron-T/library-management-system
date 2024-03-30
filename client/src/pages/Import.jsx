@@ -103,13 +103,21 @@ function Import() {
                         "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
                             outline: "none !important",
                         },
-                        ".MuiToolbar-root:where(.dark, .dark *)": {
-                            color: "white"
-                        },
-                        "&.MuiDataGrid-root:where(.dark, .dark *)": {
+                        '.MuiDataGrid-cell:where(.dark, .dark *)': {
                             color: "white",
-                            transitionDuration: "0ms"
-                        }
+                        },
+                        '.MuiDataGrid-columnHeaderTitle:where(.dark, .dark *)': {
+                            color: "white",
+                        },
+                        '.MuiToolbar-root:where(.dark, .dark *)': {
+                            color: "white",
+                        },
+                        '.MuiToolbar-root': {
+                            transitionDuration: '0s',
+                        },
+                        '.MuiDataGrid-cell': {
+                            transitionDuration: '0s',
+                        },
                     }}
                     slots={{ toolbar: CustomTableToolbar }}
                     slotProps={{

@@ -31,11 +31,11 @@ function Transactions() {
         },
         {
             field: 'member_id', headerName: 'Member ID', minWidth: 50, valueGetter: params => parseAsInt(params), renderCell: ({ row }) =>
-                row.member_id ? <Link to={`/members/${row.member_id}/details`}><CenteredText text={row.member_id} /></Link> : <p>NA</p>,
+                row.member_id ? <Link className='duration-0 hover:text-gray-600 dark:text-pink-magenta-light dark:visited:text-pink-magenta-light text-pink-magenta visited:text-pink-magenta' to={`/members/${row.member_id}/details`}><CenteredText text={row.member_id} /></Link> : <p>NA</p>,
         },
         {
             field: 'book_id', headerName: 'Book ID', minWidth: 50, valueGetter: params => parseAsInt(params), renderCell: ({ row }) =>
-                row.book_id ? <Link to={`/books/${row.book_id}/details`}><CenteredText text={row.book_id} /></Link> : <p>NA</p>
+                row.book_id ? <Link className='duration-0 hover:text-gray-600 dark:text-pink-magenta-light dark:visited:text-pink-magenta-light text-pink-magenta visited:text-pink-magenta' to={`/books/${row.book_id}/details`}><CenteredText text={row.book_id} /></Link> : <p>NA</p>
         },
         { field: 'per_day_fee', headerName: 'Per Day Fee', minWidth: 50 },
         { field: 'amount_paid', headerName: 'Amount Paid', minWidth: 50 },
