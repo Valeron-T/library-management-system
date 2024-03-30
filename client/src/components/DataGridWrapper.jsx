@@ -24,13 +24,18 @@ function DataGridWrapper({ rows, columns, slots=null, slotProps=null}) {
                 }}
                 pageSizeOptions={[5, 10, 25, 100]}
                 className='!border-0 max-w-[100%] rounded-2xl bg-white dark:text-white dark:bg-light-gray'
-                rows={rows} columns={columns} sx={{
+                rows={rows} columns={columns} 
+                sx={{
                     "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
                         outline: "none !important",
+                    },
+                    ".MuiToolbar-root :where(.dark, .dark *)": {
+                        color: "white"
                     }
                 }}
                 slots={slots}
-                slotProps={slotProps} />
+                slotProps={slotProps} 
+                />
         </div>
     )
 }
