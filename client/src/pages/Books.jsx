@@ -40,9 +40,9 @@ function Books() {
             flex: 0.3,
             renderCell: ({ row }) =>
                 <CrudButtonGroup actions={[
-                    { text: "Edit", style: "dark:bg-gray-200 dark:text-black dark:bg-green-50 text-sea-green border-sea-green dark:text-sea-green hover:bg-sea-green", data: row, isNavPath: true, navFunc: `/books/${row.id}` },
-                    { text: "Delete", style: "dark:bg-gray-200 dark:text-black dark:bg-red-50 ml-1 text-red-500 border-red-500 dark:text-red-500 hover:bg-red-500", data: row, isNavPath: false, navFunc: API.deleteBook, modalMsg: "Are you sure you want to delete the following member?" },
-                    { text: "Info", style: "dark:bg-gray-200 dark:text-black dark:bg-blue-50 ml-1 text-blue-500 border-blue-500 dark:text-blue-500 hover:bg-blue-500", data: row, isNavPath: true, navFunc: `/books/${row.id}/details` }
+                    { text: "Edit", style: "dark:bg-green-50 text-sea-green border-sea-green dark:text-sea-green hover:bg-sea-green", data: row, isNavPath: true, navFunc: `/books/${row.id}` },
+                    { text: "Delete", style: "dark:bg-red-50 ml-1 text-red-500 border-red-500 dark:text-red-500 hover:bg-red-500", data: row, isNavPath: false, navFunc: API.deleteBook, modalMsg: "Are you sure you want to delete the following member?" },
+                    { text: "Info", style: "dark:bg-blue-50 ml-1 text-blue-500 border-blue-500 dark:text-blue-500 hover:bg-blue-500", data: row, isNavPath: true, navFunc: `/books/${row.id}/details` }
                 ]} />,
             minWidth: 250
         },

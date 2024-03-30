@@ -4,10 +4,10 @@ import { toggleDarkMode } from './Navbar'
 function ThemeToggle({ isChecked }) {
     return (
         <div className="bg-transparent w-4 h-4 rounded-2xl flex items-center justify-center cursor-pointer">
-            <div className="grid place-items-center fill-black">
+            <div className="grid place-items-center align-middle fill-gray-500">
                 <input checked={isChecked} id="switch" className="hidden peer" type="checkbox" readOnly />
                 <div
-                    className="absolute transition delay-100 peer-checked:rotate-[360deg] peer-checked:scale-0 duration-500 transform w-5 h-5"
+                    className="absolute transition delay-100 peer-checked:rotate-[360deg] peer-checked:scale-0 duration-500 transform mb-1 w-4 h-4"
                 >
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -19,7 +19,7 @@ function ThemeToggle({ isChecked }) {
                 </div>
 
                 <div
-                    className="peer-checked:rotate-[360deg] delay-200 peer-checked:scale-100 transition duration-500 transform scale-0 w-5 h-5"
+                    className="peer-checked:rotate-[360deg] delay-200 fill-white peer-checked:scale-100 transition duration-500 transform scale-0 w-5 h-5"
                 >
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path

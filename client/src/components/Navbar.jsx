@@ -18,7 +18,7 @@ export default function Sidebar({ children }) {
     const [expanded, setExpanded] = useState(false);
 
     return (
-        <aside className="sm:h-screen max-sm:w-[100vw] sticky top-0 z-50">
+        <aside className="sm:min-h-screen max-sm:w-[100vw] sticky top-0 z-50">
             <nav className="h-full flex flex-col dark:bg-dark-gray bg-white shadow-sm">
                 <div className="p-4 pb-2 flex justify-between items-center">
                     <img
@@ -31,7 +31,7 @@ export default function Sidebar({ children }) {
                     {/* Button visible only on large screens */}
                     <button
                         onClick={() => setExpanded((curr) => !curr)}
-                        className="p-1.5 rounded-lg text-slate-200 bg-pink-magenta hover:bg-sea-green max-sm:hidden"
+                        className="p-1.5 rounded-lg text-slate-200 bg-pink-magenta hover:bg-pink-magenta/75 max-sm:hidden"
                     >
                         {expanded ? <ChevronFirst /> : <ChevronLast />}
                     </button>
@@ -39,7 +39,7 @@ export default function Sidebar({ children }) {
                     {/* Button visible only on small screens */}
                     <button
                         onClick={() => setExpanded((curr) => !curr)}
-                        className="p-1.5 rounded-lg text-slate-200 bg-pink-magenta hover:bg-sea-green sm:hidden"
+                        className="p-1.5 rounded-lg text-slate-200 bg-pink-magenta hover:bg-pink-magenta/75 sm:hidden"
                     >
                         {expanded ? <ChevronUp /> : <ChevronDown />}
                     </button>
@@ -70,9 +70,9 @@ export function SidebarItem({ icon, text, active = false, alert = false }) {
     return (
         <li
             className={`
-                relative flex items-center py-2 px-3 my-1
+                relative flex items-center py-2 ${expanded ? "px-3" : "px-1"}  my-1
                 font-medium rounded-md cursor-pointer
-                transition-colors group
+                transition-colors group justify-center
                 ${active
                     ? "bg-gradient-to-tr from-[#CCCDE0] to-[#E6E6EF] text-[#131111]"
                     : "hover:text-gray-700 hover:bg-sky-100 text-gray-500"
@@ -81,7 +81,7 @@ export function SidebarItem({ icon, text, active = false, alert = false }) {
         >
             {icon}
             <span
-                className={`overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"
+                className={`overflow-hidden transition-all !duration-0  ${expanded ? "w-52 ml-3" : "w-0"
                     }`}
             >
                 {text}
@@ -140,12 +140,12 @@ export function ThemeSidebarItem({ active = false, alert = false }) {
                 setcheckboxVal(!checkboxVal)
             }}
             className={`
-                relative flex items-center py-2 px-3 my-1
+                relative flex items-center py-2 ${expanded ? "px-3" : "px-1"}
                 font-medium rounded-md cursor-pointer
-                transition-colors group
+                transition-colors group justify-center
                 ${active
                     ? "bg-gradient-to-tr from-[#CCCDE0] to-[#E6E6EF] text-[#131111]"
-                    : "hover:text-gray-700 hover:bg-sky-100 text-gray-500"
+                    : "hover:text-gray-700 hover:bg-sky-100/50 text-gray-500"
                 }
             `}
         >
@@ -170,13 +170,13 @@ export function ThemeSidebarItem({ active = false, alert = false }) {
                         setcheckboxVal(!checkboxVal)
                     }}
                     className={`
-                    absolute left-full rounded-md px-2 py- ml-6
+                    absolute left-full rounded-md py-2 px-2 ml-6
                     bg-sky-100 text-[#2F304C] text-sm
                     invisible opacity-20 -translate-x-3 transition-all
                     group-hover:visible group-hover:opacity-100 group-hover:translate-x-0
                 `}
                 >
-                    Switch Theme
+                    Theme
                 </div>
             )}
         </li>

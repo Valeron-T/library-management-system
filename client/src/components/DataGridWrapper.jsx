@@ -13,7 +13,7 @@ import React from 'react'
  */
 function DataGridWrapper({ rows, columns, slots=null, slotProps=null}) {
     return (
-        <div className='mt-0 m-6 shadow-datagrid'>
+        <div className='mt-0 m-6 shadow-datagrid rounded-2xl'>
             <DataGrid
                 disableRowSelectionOnClick
                 disableColumnFilter
@@ -23,7 +23,7 @@ function DataGridWrapper({ rows, columns, slots=null, slotProps=null}) {
                     pagination: { paginationModel: { pageSize: 10 } },
                 }}
                 pageSizeOptions={[5, 10, 25, 100]}
-                className='!border-0 max-w-[100%] transition delay-2000 rounded-2xl dark:text-white dark:bg-light-gray'
+                className='!border-0 max-w-[100%] rounded-2xl bg-white dark:text-white dark:bg-light-gray'
                 rows={rows} columns={columns} sx={{
                     "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
                         outline: "none !important",

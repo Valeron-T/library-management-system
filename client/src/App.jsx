@@ -35,23 +35,23 @@ function App() {
 
             <div className="flex flex-col">
               <NavLink to={"/"}>
-                {({ isActive }) => (<SidebarItem icon={<FaHome />} text={"Home"} active={isActive} />)}
+                {({ isActive }) => (<SidebarItem icon={<FaHome className='!duration-0' />} text={"Home"} active={isActive} />)}
               </NavLink>
 
               <NavLink to={"/books"}>
-                {({ isActive }) => (<SidebarItem icon={<FaBook />} text={"Books"} active={isActive} />)}
+                {({ isActive }) => (<SidebarItem icon={<FaBook className='!duration-0'/>} text={"Books"} active={isActive} />)}
               </NavLink>
 
               <NavLink to={"/members"}>
-                {({ isActive }) => (<SidebarItem icon={<FaUsers />} text={"Members"} active={isActive} />)}
+                {({ isActive }) => (<SidebarItem icon={<FaUsers className='!duration-0'/>} text={"Members"} active={isActive} />)}
               </NavLink>
 
               <NavLink to={"/transactions"}>
-                {({ isActive }) => (<SidebarItem icon={<GrTransaction />} text={"Transactions"} active={isActive} />)}
+                {({ isActive }) => (<SidebarItem icon={<GrTransaction className='!duration-0'/>} text={"Transactions"} active={isActive} />)}
               </NavLink>
 
               <NavLink to={"/reports"}>
-                {({ isActive }) => (<SidebarItem icon={<MdAnalytics />} text={"Reports"} active={isActive} />)}
+                {({ isActive }) => (<SidebarItem icon={<MdAnalytics className='!duration-0'/>} text={"Reports"} active={isActive} />)}
               </NavLink>
             </div>
 
