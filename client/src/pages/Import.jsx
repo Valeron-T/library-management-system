@@ -81,7 +81,7 @@ function Import() {
             <Toaster/>
             <TitleText text={"Review Imports"} />
             {/* Wait for books to be fetched before rendering */}
-            {books && <div className='rounded-2xl bg-white mt-0 m-4'>
+            {books && <div className='mt-0 m-6 shadow-datagrid rounded-2xl'>
                 <DataGrid
                     disableRowSelectionOnClick
                     disableColumnFilter
@@ -97,10 +97,18 @@ function Import() {
                     }}
                     getRowId={(row) => row.bookID}
                     pageSizeOptions={[5, 10, 25, 100]}
-                    className='!border-0 max-w-[100%]'
-                    rows={books['books']} columns={columns} sx={{
+                    className='!border-0 max-w-[100%] rounded-2xl bg-white  dark:bg-light-gray'
+                    rows={books['books']} columns={columns} 
+                    sx={{
                         "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
                             outline: "none !important",
+                        },
+                        ".MuiToolbar-root:where(.dark, .dark *)": {
+                            color: "white"
+                        },
+                        "&.MuiDataGrid-root:where(.dark, .dark *)": {
+                            color: "white",
+                            transitionDuration: "0ms"
                         }
                     }}
                     slots={{ toolbar: CustomTableToolbar }}

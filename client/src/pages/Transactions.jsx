@@ -49,7 +49,7 @@ function Transactions() {
             flex: 0.3,
             renderCell: ({ row }) =>
                 !row.returned_date ? <CrudButtonGroup actions={[
-                    { text: "Return", style: "text-red-500 border-red-500 hover:bg-red-500", data: row, isNavPath: true, navFunc: `/transactions/${row.id}/return` },
+                    { text: "Return", style: " dark:bg-red-50 text-red-500 border-red-500 hover:bg-red-500", data: row, isNavPath: true, navFunc: `/transactions/${row.id}/return` },
                 ]} /> : <p className='font-semibold'>Book Returned</p>,
             minWidth: 250
         },

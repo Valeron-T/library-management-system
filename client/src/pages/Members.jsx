@@ -30,8 +30,8 @@ function Members() {
     { field: 'amount_spent', headerName: 'Amount Spent', minWidth: 75 },
     {
       field: "action", headerName: "", sortable: false, flex: 0.2, renderCell: ({ row }) => <CrudButtonGroup actions={[
-        { text: "Edit", style: "text-sea-green border-sea-green hover:bg-sea-green", data: row, isNavPath: true, navFunc: `/members/${row.id}` },
-        { text: "Delete", style: "ml-1 text-red-500 border-red-500 hover:bg-red-500", data: row, isNavPath: false, navFunc: API.deleteMember, modalMsg: "Are you sure you want to delete the following member?" }
+        { text: "Edit", style: "dark:bg-green-50 text-sea-green border-sea-green hover:bg-sea-green", data: row, isNavPath: true, navFunc: `/members/${row.id}` },
+        { text: "Delete", style: "ml-1 dark:bg-red-50 text-red-500 border-red-500 hover:bg-red-500", data: row, isNavPath: false, navFunc: API.deleteMember, modalMsg: "Are you sure you want to delete the following member?" }
       ]} />, minWidth: 200
     },
   ];
