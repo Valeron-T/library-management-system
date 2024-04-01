@@ -44,7 +44,7 @@ function FormElement({ text, type, value, onchange, pattern = null, isRequired =
                         onChange={e => onchange(e.target.value)}
                         disabled={isDisabled}
                         pattern={pattern}
-                        className={`sm:text-md ${isDisabled ? "bg-licorice" : "bg-gray-700"} min-w-[90%] mt-2 border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 border-gray-600 placeholder-gray-400 text-white`}
+                        className={`sm:text-md ${isDisabled ? "dark:bg-dark-gray dark:!text-gray-400 bg-light-gray text-gray-300" : "dark:bg-light-gray"} min-w-[90%] mt-2 border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 border-gray-600 placeholder-gray-400 dark:text-white`}
                         value={value}
                         required={isRequired}
                     />

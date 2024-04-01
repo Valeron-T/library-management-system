@@ -140,7 +140,7 @@ function Home() {
             {latestBooks['result'].map(item => {
               return <BookCard key={item.isbn} title={item.title} author={item.author} isbn={item.isbn} />
             })}
-          </div> : "Loading"}
+          </div> : <p className='p-8'>Loading</p>}
         </div>
 
 

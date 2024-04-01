@@ -63,7 +63,7 @@ function LineChart({ data, title, dataSetTitle, xKey, yKey }) {
     };
 
     return (
-        <div className='flex justify-center shadow-soft bg-rose-100 rounded-xl m-4 items-center self-center w-full'>
+        <div className='flex justify-center shadow-soft bg-rose-50 rounded-xl m-4 items-center self-center w-full'>
             <div className="sm:h-[30vh] h-[25vh] min-w-[30vw] p-4 w-full">
                 <Line options={options} data={formatted_data} />
             </div>
