@@ -34,4 +34,7 @@ def create_app(config_class=Config):
     from app.routes.transactions import bp as transactions_bp
     app.register_blueprint(transactions_bp, url_prefix='/transactions')
 
+    from app.routes.analytics import bp as analytics_bp
+    app.register_blueprint(analytics_bp, url_prefix='/analytics')
+
     return app

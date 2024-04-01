@@ -11,6 +11,7 @@ import CenteredText from '../components/CenteredText';
 import LinkWrapper from '../components/LinkWrapper';
 import BookCard from '../components/BookCard';
 import SubTitleText from '../components/SubTitleText';
+import DaysFilter from '../components/DaysFilter';
 
 /** Home Page */
 function Home() {
@@ -18,12 +19,28 @@ function Home() {
   const [books, setBooks] = useState(null);
   const [latestBooks, setLatestBooks] = useState(null);
   const [members, setMembers] = useState(null);
+  const [daysFilter, setDaysFilter] = useState(30)
+
+  const [analyticsNewMembers, setAnalyticsNewMembers] = useState(0)
+  const [analyticsBooksBorrowed, setAnalyticsBooksBorrowed] = useState(0)
+  const [analyticsBooksReturned, setAnalyticsBooksReturned] = useState(0)
+  const [analyticsRevenueGenerated, setAnalyticsRevenueGenerated] = useState(0)
 
   useEffect(() => {
     API.getTop5BooksByRevenue().then(books => setBooks(books))
     API.getLatestMemberDetails().then(members => setMembers(members))
     API.getLatestBooksIssued().then(latestBooks => setLatestBooks(latestBooks))
   }, []);
+
+  useEffect(() => {
+    API.getAnalyticsBooksBorrowed(daysFilter).then(res => setAnalyticsBooksBorrowed(res.result))
+    API.getAnalyticsBooksReturned(daysFilter).then(res => setAnalyticsBooksReturned(res.result))
+    API.getAnalyticsNewMembers(daysFilter).then(res => setAnalyticsNewMembers(res.result))
+    API.getAnalyticsRevenue(daysFilter).then(res => setAnalyticsRevenueGenerated(res.result))
+  
+    
+  }, [daysFilter])
+  
 
 
   const bookColumns = [
@@ -68,21 +85,24 @@ function Home() {
       }
 
       {/* Title for the page */}
-      <TitleText style={'pb-0'} text={"Hello, John"} />
+      <div className={`pb-0 flex flex-row font-poppins font-semibold dark:text-white text-zinc-700 p-8 `}>
+        <p className='md:text-3xl sm:text-2xl text-xl m-0'>Hello,&nbsp;</p>
+        <p className='md:text-3xl sm:text-2xl text-xl m-0 text-pink-magenta'>John !</p>
+        <div className="flex flex-1 justify-end">
+          <DaysFilter setter={setDaysFilter} />
+        </div>
+
+      </div>
 
       {/* Cards for different functionalities */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 m-2">
-        {/* Card for managing books */}
-        <Card link={'/books'} value={"100"} title={"Borrowed Books"} icon={<FaBook fill='white' size={24} className='self-center' />} />
+        <Card value={analyticsBooksBorrowed} title={"Borrowed Books"} icon={<FaBook fill='white' size={24} className='self-center' />} />
 
-        {/* Card for managing members */}
-        <Card link={'/members'} value={"2000"} title={"New Members"} icon={<FaUsers fill='white' size={24} className='' />} />
+        <Card value={analyticsNewMembers} title={"New Members"} icon={<FaUsers fill='white' size={24} className='' />} />
 
-        {/* Card for managing transactions */}
-        <Card link={'/transactions'} value={"350"} title={"Issue books and returns"} icon={<FaMoneyBillTransfer fill='white' size={24} className='' />} />
+        <Card value={analyticsBooksReturned} title={"Returned Books"} icon={<FaMoneyBillTransfer fill='white' size={24} className='' />} />
 
-        {/* Card for generating reports */}
-        <Card link={'/reports'} value={"124"} title={"Visualise Data"} icon={<MdAnalytics fill='white' size={24} className='' />} />
+        <Card value={analyticsRevenueGenerated} title={"Revenue Earned"} icon={<MdAnalytics fill='white' size={24} className='' />} />
 
         {books && <DataGridWrapper styles={"sm:col-span-2 col-span-1 !m-4"} pageSize={5} rows={books['result']} columns={bookColumns} slots={{ toolbar: CustomTableToolbar, pagination: LinkWrapper }} slotProps={{
           toolbar: {
@@ -116,10 +136,10 @@ function Home() {
 
         <div className="flex flex-col lg:col-span-4 sm:col-span-2 col-span-1 bg-white shadow-soft dark:bg-light-gray m-4 rounded-2xl">
           <SubTitleText style={'pb-2'} text={"Recently Issued Books"} />
-          { latestBooks ? <div className="flex flex-row overflow-x-scroll m-4 scrollbar-thin scrollbar-track-[#efefef] dark:scrollbar-thumb-[#201C1D] scrollbar-thumb-gray-300 dark:scrollbar-track-dark-gray">
-             {latestBooks['result'].map(item => {
-              return <BookCard key={item.isbn} title={item.title} author={item.author} isbn={item.isbn}/>
-             })}
+          {latestBooks ? <div className="flex flex-row overflow-x-scroll m-4 scrollbar-thin scrollbar-track-[#efefef] dark:scrollbar-thumb-[#201C1D] scrollbar-thumb-gray-300 dark:scrollbar-track-dark-gray">
+            {latestBooks['result'].map(item => {
+              return <BookCard key={item.isbn} title={item.title} author={item.author} isbn={item.isbn} />
+            })}
           </div> : "Loading"}
         </div>
 

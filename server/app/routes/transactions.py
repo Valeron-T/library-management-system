@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-import sqlalchemy.types
 from flask import Blueprint, jsonify, request
 from sqlalchemy import func, cast, Date
 from app.extensions import db

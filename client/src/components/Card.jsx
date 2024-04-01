@@ -18,11 +18,11 @@ function Card({ value, title, icon }) {
                     {icon}
                 </div>
 
-                {/* Title */}
-                {value && <p className="font-semibold sm:pl-4 my-4 !duration-0 font-poppins text-3xl">{value}</p>}
+                {/* Value */}
+                <p className="font-semibold sm:pl-4 my-4 !duration-0 font-poppins text-3xl">{value}</p>
             </div>
 
-            {/* Descriptive text */}
+            {/* Title */}
             {title && <p className="sm:ml-4 mb-2 m-0 max-sm:self-center">{title}</p>}
         </div>
 

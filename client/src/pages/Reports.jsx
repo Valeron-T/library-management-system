@@ -3,7 +3,7 @@ import TitleText from '../components/TitleText'
 import LineChart from '../components/LineChart'
 import { getAvgDaysBookHeld, getBooksByRating, getLatestNewUsers, getLatestTransactions } from '../services/API'
 import BarChart from '../components/BarChart'
-import Select from 'react-select';
+import DaysFilter from '../components/DaysFilter'
 
 /** Page to display all analytics */
 function Reports() {
@@ -26,16 +26,6 @@ function Reports() {
     getBooksByRating().then(res => setBooksByRating(res['result']))
   }, [])
 
-  // Options for days filter dropdown
-  const daysOptions = [
-    { value: 1, label: "Past 24 hours" },
-    { value: 7, label: "Past 7 Days" },
-    { value: 30, label: "Past 30 Days" },
-    { value: 180, label: "Past 180 Days" },
-    { value: 365, label: "Past 365 Days" },
-  ]
-
-
   return (
     <div className='flex flex-col font-poppins w-full'>
 
@@ -43,17 +33,8 @@ function Reports() {
       <div className="flex sm:flex-row flex-col items-center justify-center">
         
         {/* Days Filter */}
-        <label className='font-semibold mx-4'> Time Range </label>
-        <Select
-          className="basic-single"
-          classNamePrefix="select"
-          defaultValue={7}
-          isClearable={false}
-          name="days"
-          options={daysOptions}
-          onChange={e => setDaysFilter(e['value'])}
-          placeholder="Past 30 Days"
-        />
+        <label className='font-semibold mx-4 dark:text-white'> Time Range </label>
+        <DaysFilter setter={setDaysFilter} />
       </div>
 
       {/* Charts */}

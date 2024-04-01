@@ -58,13 +58,13 @@ function BarChart({ data, title, dataSetTitle, xKey, yKey }) {
             {
                 label: dataSetTitle,
                 data: data.map(item => item[yKey]),
-                backgroundColor: 'rgb(92, 17, 73)',
+                backgroundColor: 'rgb(207,68,100)',
             }
         ],
     };
 
     return (
-        <div className='flex justify-center bg-purple-100 rounded-xl m-4 items-center self-center w-full'>
+        <div className='flex justify-center shadow-soft bg-rose-100 rounded-xl m-4 items-center self-center w-full'>
             <div className="sm:h-[30vh] h-[25vh] min-w-[30vw] p-4 w-full">
                 <Bar options={options} data={formatted_data} />
             </div>
