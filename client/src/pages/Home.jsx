@@ -9,6 +9,7 @@ import { CustomTableToolbar } from '../components/CustomTableToolbar';
 import DataGridWrapper from '../components/DataGridWrapper';
 import CenteredText from '../components/CenteredText';
 import LinkWrapper from '../components/LinkWrapper';
+import BookCard from '../components/BookCard';
 
 /** Home Page */
 function Home() {
@@ -67,7 +68,7 @@ function Home() {
       <TitleText style={'pb-0'} text={"Hello, John"} />
 
       {/* Cards for different functionalities */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 m-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 m-2">
         {/* Card for managing books */}
         <Card link={'/books'} value={"100"} title={"Borrowed Books"} icon={<FaBook fill='white' size={24} className='self-center' />} />
 
@@ -109,6 +110,23 @@ function Home() {
             styles: "text-pink-magenta dark:text-white hover:opacity-70"
           }
         }} />}
+
+        <div className="flex flex-col lg:col-span-4 sm:col-span-2 col-span-1">
+          <TitleText text={"Recently Issued Books"} />
+          <div className="flex flex-row overflow-x-scroll scrollbar-thin dark:scrollbar-thumb-light-gray scrollbar-track-gray-300 dark:scrollbar-track-dark-gray">
+            <BookCard title={"hello world"} author={"jjfjsdfjdhjfdhj"} />
+            <BookCard title={"hello world"} author={"jjfjsdfjdhjfdhj"} />
+            <BookCard title={"hello world"} author={"jjfjsdfjdhjfdhj"} />
+            <BookCard title={"hello world"} author={"jjfjsdfjdhjfdhj"} />
+            <BookCard title={"hello world"} author={"jjfjsdfjdhjfdhj"} />
+            <BookCard title={"hello world"} author={"jjfjsdfjdhjfdhj"} />
+            <BookCard title={"hello world"} author={"jjfjsdfjdhjfdhj"} />
+            <BookCard title={"hello world"} author={"jjfjsdfjdhjfdhj"} />
+            <BookCard title={"hello world"} author={"jjfjsdfjdhjfdhj"} />
+            <BookCard title={"hello world"} author={"jjfjsdfjdhjfdhj"} />
+          </div>
+        </div>
+
 
       </div>
 

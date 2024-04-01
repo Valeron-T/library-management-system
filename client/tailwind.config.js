@@ -25,6 +25,7 @@ export const theme = {
   
 };
 export const plugins = [
+  require('tailwind-scrollbar'),
 ];
 
 export const corePlugins= {
