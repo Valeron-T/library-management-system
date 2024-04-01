@@ -81,7 +81,7 @@ function Import() {
             <Toaster/>
             <TitleText text={"Review Imports"} />
             {/* Wait for books to be fetched before rendering */}
-            {books && <div className='mt-0 m-6 shadow-datagrid rounded-2xl'>
+            {books && <div className='mt-0 m-6 shadow-soft rounded-2xl'>
                 <DataGrid
                     disableRowSelectionOnClick
                     disableColumnFilter

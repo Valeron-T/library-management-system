@@ -18,7 +18,7 @@ export default function Sidebar({ children }) {
     const [expanded, setExpanded] = useState(false);
 
     return (
-        <aside className="sm:min-h-screen max-sm:w-[100vw] sticky top-0 z-50">
+        <aside className="sm:h-screen max-sm:w-[100vw] sticky top-0 z-50">
             <nav className="h-full flex flex-col dark:bg-dark-gray bg-white shadow-sm">
                 <div className="p-4 pb-2 flex justify-between items-center">
                     <img
@@ -115,15 +115,12 @@ export function toggleDarkMode() {
     if (localStorage.getItem("isDark") === null) {
         localStorage.setItem('isDark', 'true');
         html.classList.add('dark');
-        console.log("Initial theme set")
     } else if (localStorage.getItem("isDark") === 'true') {
         html.classList.remove('dark');
         localStorage.setItem('isDark', 'false');
-        console.log("light")
     } else {
         html.classList.add('dark');
         localStorage.setItem('isDark', 'true');
-        console.log("dark")
     }
 }
 

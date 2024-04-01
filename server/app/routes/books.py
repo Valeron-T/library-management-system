@@ -223,3 +223,26 @@ def get_books_quality():
     results = [{"rating": result.rating, "count": result.count} for result in score_count]
 
     return jsonify({"result": results})
+
+
+@bp.route('/by/revenue', methods=['GET'])
+def get_books_by_revenue():
+    """
+    Get the top 5 book titles according to the highest revenue generated.
+
+    Returns:
+        dict: A JSON object containing book titles according to the highest revenue generated.
+    """
+    revenue_by_book = (
+        db.session.query(Book.id, Book.title, func.sum(Transaction.total))
+        .join(Transaction, Transaction.book_id == Book.id)
+        .filter(Transaction.total.isnot(None))
+        .group_by(Transaction.book_id, Book.id)
+        .order_by(func.sum(Transaction.total).desc())
+        .limit(5)
+        .all()
+    )
+
+    results = [{"id": result[0], "title": result[1], "total": result[2]} for result in revenue_by_book]
+
+    return jsonify({"result": results})

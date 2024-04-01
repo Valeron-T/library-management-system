@@ -8,22 +8,23 @@ import React from 'react'
  * @param {Object[]} [gridConfig.columns] - Columns (headers)
  * @param {Object} [gridConfig.slots=""] - Custom items to put in slot at the top of data grid.
  * @param {Object} [gridConfig.slotProps=""] - Props for items in slots
+ * @param {Object} [gridConfig.styles=""] - Tailwind classes to apply to root container.
  *  
  * @returns 
  */
-function DataGridWrapper({ rows, columns, slots=null, slotProps=null}) {
+function DataGridWrapper({ rows, columns, slots=null, slotProps=null, styles=null, pageSize=10}) {
     return (
-        <div className='mt-0 m-6 shadow-datagrid rounded-2xl'>
+        <div className={`${styles} mt-0 m-6 shadow-soft rounded-2xl`}>
             <DataGrid
                 disableRowSelectionOnClick
                 disableColumnFilter
                 disableColumnSelector
                 disableDensitySelector
                 initialState={{
-                    pagination: { paginationModel: { pageSize: 10 } },
+                    pagination: { paginationModel: { pageSize: pageSize } },
                 }}
                 pageSizeOptions={[5, 10, 25, 100]}
-                className='!border-0 max-w-[100%] rounded-2xl bg-white dark:bg-light-gray'
+                className={`!border-0 max-w-full rounded-2xl bg-white dark:bg-light-gray`}
                 rows={rows} columns={columns} 
                 sx={{
                     "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {

@@ -9,7 +9,7 @@ import { Toaster } from 'react-hot-toast';
 import DataGridWrapper from '../components/DataGridWrapper';
 
 /** Page to display all books in a data grid and perform various operations */
-function Books() {
+function Books({ styles=null }) {
     const [books, setBooks] = useState(null);
 
     useEffect(() => {
@@ -49,7 +49,7 @@ function Books() {
     ]
 
     return (
-        <div className='flex flex-col font-poppins w-full'>
+        <div className={`${styles} flex flex-col font-poppins w-full`}>
             <Toaster />
             <TitleText text={"Books"} />
             {/* Wait for books to be fetched before rendering */}

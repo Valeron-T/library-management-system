@@ -122,3 +122,18 @@ def fetch_latest_members(time_in_days):
     duration = datetime.now() - timedelta(days=time_in_days)
     members = db.session.query(cast(Member.reg_date, Date), func.count(cast(Member.reg_date, Date))).filter(cast(Member.reg_date, Date) >= duration).group_by(cast(Member.reg_date, Date)).all()
     return jsonify({'members': [{"date": date.strftime("%d-%m-%y"), "count": count} for date, count in members]})
+
+
+@bp.route('/new', methods=['GET'])
+def get_new_members():
+    """
+    Retrieve all members from the database and return them as JSON.
+
+    Returns:
+        dict: A JSON object containing information about all members.
+    """
+    users = db.session.query(Member.id, Member.name, Member.email, Member.amount_spent).order_by(Member.reg_date.desc()).limit(5).all()
+
+    results = [{"id": result[0], "name": result[1], "email": result[2], "spending": result[3]} for result in users]
+
+    return jsonify({'result': results})
