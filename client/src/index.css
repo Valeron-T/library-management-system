@@ -21,7 +21,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: rgb(236, 236, 236);
+  background-color: #ececec;
   transition: 500ms;
 }
 
@@ -37,10 +37,6 @@ body * {
 canvas {
   width: 100% !important;
 }
-
-/* .font-poppins {
-  font-family: 'Poppins', sans-serif;
-} */
 
 .popup-content {
   margin: auto;

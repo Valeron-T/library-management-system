@@ -10,16 +10,19 @@ import DataGridWrapper from '../components/DataGridWrapper';
 import CenteredText from '../components/CenteredText';
 import LinkWrapper from '../components/LinkWrapper';
 import BookCard from '../components/BookCard';
+import SubTitleText from '../components/SubTitleText';
 
 /** Home Page */
 function Home() {
 
   const [books, setBooks] = useState(null);
+  const [latestBooks, setLatestBooks] = useState(null);
   const [members, setMembers] = useState(null);
 
   useEffect(() => {
     API.getTop5BooksByRevenue().then(books => setBooks(books))
     API.getLatestMemberDetails().then(members => setMembers(members))
+    API.getLatestBooksIssued().then(latestBooks => setLatestBooks(latestBooks))
   }, []);
 
 
@@ -111,30 +114,17 @@ function Home() {
           }
         }} />}
 
-        <div className="flex flex-col lg:col-span-4 sm:col-span-2 col-span-1">
-          <TitleText text={"Recently Issued Books"} />
-          <div className="flex flex-row overflow-x-scroll scrollbar-thin dark:scrollbar-thumb-light-gray scrollbar-track-gray-300 dark:scrollbar-track-dark-gray">
-            <BookCard title={"hello world"} author={"jjfjsdfjdhjfdhj"} />
-            <BookCard title={"hello world"} author={"jjfjsdfjdhjfdhj"} />
-            <BookCard title={"hello world"} author={"jjfjsdfjdhjfdhj"} />
-            <BookCard title={"hello world"} author={"jjfjsdfjdhjfdhj"} />
-            <BookCard title={"hello world"} author={"jjfjsdfjdhjfdhj"} />
-            <BookCard title={"hello world"} author={"jjfjsdfjdhjfdhj"} />
-            <BookCard title={"hello world"} author={"jjfjsdfjdhjfdhj"} />
-            <BookCard title={"hello world"} author={"jjfjsdfjdhjfdhj"} />
-            <BookCard title={"hello world"} author={"jjfjsdfjdhjfdhj"} />
-            <BookCard title={"hello world"} author={"jjfjsdfjdhjfdhj"} />
-          </div>
+        <div className="flex flex-col lg:col-span-4 sm:col-span-2 col-span-1 bg-white shadow-soft dark:bg-light-gray m-4 rounded-2xl">
+          <SubTitleText style={'pb-2'} text={"Recently Issued Books"} />
+          { latestBooks ? <div className="flex flex-row overflow-x-scroll m-4 scrollbar-thin scrollbar-track-[#efefef] dark:scrollbar-thumb-[#201C1D] scrollbar-thumb-gray-300 dark:scrollbar-track-dark-gray">
+             {latestBooks['result'].map(item => {
+              return <BookCard key={item.isbn} title={item.title} author={item.author} isbn={item.isbn}/>
+             })}
+          </div> : "Loading"}
         </div>
 
 
       </div>
-
-      <div className="flex w-full">
-        {/* <Books styles={'sm:max-w-[49%]'}></Books> */}
-        {/* <Books styles={'sm:max-w-[49%]'}></Books> */}
-      </div>
-
 
     </div>
   )

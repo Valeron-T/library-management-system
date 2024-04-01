@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { GridToolbarContainer, GridToolbarQuickFilter } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
-import TitleText from "./TitleText";
+import SubTitleText from "./SubTitleText";
 
 
 /**
@@ -20,7 +20,7 @@ export function CustomTableToolbar({ buttons, search=true, title=null }) {
 
   return (
     <GridToolbarContainer className={`${title && "justify-between"} flex flex-row mx-4 pt-4`}>
-      { title && <TitleText style={"py-2 px-0"} text={title}></TitleText>}
+      { title && <SubTitleText style={"py-2 px-0"} text={title} />}
       {buttons.map(button => {
         return button.func ?
           <Button key={button.title} onClick={button.func} className={`dark:bg-pink-magenta-light text-pink-magenta border-pink-magenta hover:bg-pink-magenta border border-solid hover:text-white font-bold uppercase text-xs px-4 py-2 rounded-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150`}>{button.title}</Button>

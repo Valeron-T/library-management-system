@@ -84,3 +84,5 @@ export const getBooksByRating = async () => await fetchWithParams('/books/by/rat
 export const getTop5BooksByRevenue = async () => await fetchWithParams('/books/by/revenue');
 
 export const getLatestMemberDetails = async () => await fetchWithParams('/members/new');
+
+export const getLatestBooksIssued = async () => await fetchWithParams('/transactions/latest-books-issued');

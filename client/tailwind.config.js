@@ -8,6 +8,7 @@ export const theme = {
   extend: {
     boxShadow: {
       'soft': '0 0 20px 1px rgba(0, 0, 0, 0.05)',
+      'hard': '0 0 20px 1px rgba(0, 0, 0, 0.1)',
     },
     colors: {
       'sea-green': "#09814A",
