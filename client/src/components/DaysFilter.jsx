@@ -25,7 +25,7 @@ function DaysFilter({ setter }) {
                 placeholder="Past 30 Days"
                 classNames={{
                     menu: () => "dark:bg-dark-gray",
-                    option: () => "bg-gray-50 dark:text-white dark:bg-dark-gray text-gray-900 text-sm dark:border-gray-600 dark:placeholder-gray-400 dark:text-white ",
+                    option: () => "bg-gray-50 dark:text-white dark:bg-dark-gray hover:cursor-pointer dark:hover:bg-pink-magenta hover:bg-pink-magenta-light text-gray-900 text-sm dark:border-gray-600 dark:placeholder-gray-400 dark:text-white ",
                 }}
             />
         </>
