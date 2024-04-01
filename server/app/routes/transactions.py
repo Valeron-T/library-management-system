@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-import sqlalchemy.types
 from flask import Blueprint, jsonify, request
 from sqlalchemy import func, cast, Date
 from app.extensions import db
@@ -142,6 +141,31 @@ def get_avg_days_book_held():
     print(average_days_held)
 
     results = [{"book_id": result.title, "average_days_held": result.average_days_held} for result in
+               average_days_held]
+
+    return jsonify({"result": results})
+
+
+@bp.route('/latest-books-issued', methods=['GET'])
+def get_latest_books_issued():
+    """
+        Gets the title, author, isbn of top 10 latest books issued.
+
+        Returns:
+            dict: A JSON object containing the title, author, isbn of top 10 latest books issued.
+        """
+    average_days_held = (
+        db.session.query(Book.title, Book.author, Book.isbn, func.max(Transaction.borrowed_date).label("borrowed_date")) \
+        .join(Transaction, Transaction.book_id == Book.id)
+        .group_by(Book.title, Book.author, Book.isbn)
+        .order_by(func.max(Transaction.borrowed_date).desc())
+        .limit(10)
+        .all()
+    )
+
+    print(average_days_held)
+
+    results = [{"title": result.title, "author": result.author, "isbn": result.isbn} for result in
                average_days_held]
 
     return jsonify({"result": results})

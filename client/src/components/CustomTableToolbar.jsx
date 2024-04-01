@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import { GridToolbarContainer, GridToolbarQuickFilter } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
+import SubTitleText from "./SubTitleText";
 
 
 /**
@@ -10,23 +11,31 @@ import { Link } from "react-router-dom";
  * @param {string} buttons[].title - Title of the button.
  * @param {Function} [buttons[].func] - Function to be executed when the button is clicked.
  * @param {string} [buttons[].link] - URL to navigate to when the button is clicked.
+ * @param {boolean} [buttons[].search] - Displays search bar if ture
  * 
  * @returns {JSX.Element} React component representing the custom table toolbar.
 */
 
-export function CustomTableToolbar({ buttons }) {
+export function CustomTableToolbar({ buttons, search=true, title=null }) {
 
   return (
-    <GridToolbarContainer className="mx-4 pt-4">
+    <GridToolbarContainer className={`${title && "justify-between"} flex flex-row mx-4 pt-4`}>
+      { title && <SubTitleText style={"py-2 px-0"} text={title} />}
       {buttons.map(button => {
         return button.func ?
-          <Button key={button.title} onClick={button.func} className={`text-orange-600 border-orange-600 hover:bg-orange-600 border border-solid hover:text-white font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150`}>{button.title}</Button>
+          <Button key={button.title} onClick={button.func} className={`dark:bg-pink-magenta-light text-pink-magenta border-pink-magenta hover:bg-pink-magenta border border-solid hover:text-white font-bold uppercase text-xs px-4 py-2 rounded-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150`}>{button.title}</Button>
           : <Link to={button.link} key={button.title}>
-            <Button key={button.title} className={`text-orange-600 border-orange-600 hover:bg-orange-600 border border-solid hover:text-white font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150`}>{button.title}</Button>
+            <Button key={button.title} className={`dark:bg-pink-magenta-light text-pink-magenta border-pink-magenta hover:bg-pink-magenta border border-solid hover:text-white font-bold uppercase text-xs px-4 py-2 rounded-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150`}>{button.title}</Button>
           </Link>
       })}
 
-      <GridToolbarQuickFilter className="!border-0 !outline-none focus:!outline-none focus:!border-0" />
+      { search && <GridToolbarQuickFilter sx={{
+                '& input:where(.dark, .dark *)': {
+                  color: 'white',
+                },'& svg:where(.dark, .dark *)': {
+                  color: 'white',
+                },
+              }} className="!border-0 !outline-none focus:!outline-none focus:!border-0" />}
     </GridToolbarContainer>
   );
 }

@@ -56,14 +56,14 @@ function LineChart({ data, title, dataSetTitle, xKey, yKey }) {
             {
                 label: dataSetTitle,
                 data: data.map(item => item[yKey]),
-                borderColor: 'rgb(92, 17, 73)',
-                backgroundColor: 'rgba(166, 99, 149, 0.5)',
+                borderColor: 'rgb(207,68,100)',
+                backgroundColor: 'rgba(207,68,100, 0.5)',
             }
         ],
     };
 
     return (
-        <div className='flex justify-center bg-purple-100 rounded-xl m-4 items-center self-center w-full'>
+        <div className='flex justify-center shadow-soft bg-rose-50 rounded-xl m-4 items-center self-center w-full'>
             <div className="sm:h-[30vh] h-[25vh] min-w-[30vw] p-4 w-full">
                 <Line options={options} data={formatted_data} />
             </div>

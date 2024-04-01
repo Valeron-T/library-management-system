@@ -9,7 +9,7 @@ RUN npm install
 # Copy all files 
 COPY . .
 # Allow inbound connections to port 80
-EXPOSE 80
+# EXPOSE 80
 # Build the react client
 RUN npm run build
 # Run the client

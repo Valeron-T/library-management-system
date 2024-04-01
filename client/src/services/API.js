@@ -80,3 +80,14 @@ export const getLatestNewUsers = async (daysFilter) => await fetchWithParams(`/m
 export const getAvgDaysBookHeld = async () => await fetchWithParams('/transactions/avg-days-book-held');
 
 export const getBooksByRating = async () => await fetchWithParams('/books/by/rating');
+
+export const getTop5BooksByRevenue = async () => await fetchWithParams('/books/by/revenue');
+
+export const getLatestMemberDetails = async () => await fetchWithParams('/members/new');
+
+export const getLatestBooksIssued = async () => await fetchWithParams('/transactions/latest-books-issued');
+
+export const getAnalyticsNewMembers = async (daysFilter) => await fetchWithParams(`/analytics/members/${daysFilter}`);
+export const getAnalyticsBooksBorrowed = async (daysFilter) => await fetchWithParams(`/analytics/books/borrowed/${daysFilter}`);
+export const getAnalyticsBooksReturned = async (daysFilter) => await fetchWithParams(`/analytics/books/returned/${daysFilter}`);
+export const getAnalyticsRevenue = async (daysFilter) => await fetchWithParams(`/analytics/revenue/${daysFilter}`);
